@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Special For Pratibha</title>
+  <title>Special For mini</title>
   <style>
     * {
       margin: 0;
@@ -87,10 +87,15 @@
 </head>
 <body>
 
+  <!-- BACKGROUND ROMANTIC AUDIO -->
+  <audio id="romantic-audio" preload="auto">
+    <source src="https://mp3tourl.com/audio/1787275271139-13497afb-f370-4576-a736-417174b62338.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- FRONT PAGE -->
   <div id="front-page">
-    <div class="front-title">Pratibha</div>
-    <button class="btn-check" onclick="startExperience()">Check Your Blood particle</button>
+    <div class="front-title">mini</div>
+    <button class="btn-check" onclick="startExperience()">Check Your Blood Line</button>
   </div>
 
   <!-- ANIMATION PAGE -->
@@ -100,6 +105,13 @@
 
   <script>
     function startExperience() {
+      // 1. Play romantic sound on button click
+      const audio = document.getElementById('romantic-audio');
+      audio.volume = 0.9;
+      audio.currentTime = 5; // इंट्रो पार्ट स्किप करने के लिए
+      audio.play().catch(e => console.log("Audio play error:", e));
+
+      // 2. Transition pages and start animation
       const frontPage = document.getElementById('front-page');
       const animPage = document.getElementById('animation-page');
 
@@ -116,9 +128,8 @@
       const ctx = canvas.getContext("2d");
 
       const centerX = canvas.width / 2;
-      const centerY = 330;
+      const centerY = 310;
 
-      // Romantic background particles
       const bgParticles = [];
       for (let b = 0; b < 45; b++) {
         bgParticles.push({
@@ -130,7 +141,6 @@
         });
       }
 
-      // Heart coordinates equation
       const heartPoints = [];
       for (let scale = 6; scale <= 12; scale++) {
         for (let j = 0; j < 120; j++) {
@@ -141,7 +151,6 @@
         }
       }
 
-      // Bloodline dynamic pulse
       const bloodlines = [];
       for (let l = 0; l < 20; l++) {
         let randomPt = heartPoints[Math.floor(Math.random() * heartPoints.length)];
@@ -154,7 +163,6 @@
         });
       }
 
-      // Floating Abhishek particles inside the heart
       const nameParticles = [];
       for (let p = 0; p < 14; p++) {
         nameParticles.push({
@@ -167,13 +175,22 @@
         });
       }
 
+      // Updated and well-paced lyrics lines
+      const lyricsLines = [
+        "Dil ki baatein kehne lage...",
+        "Tu hi meri dhadkan hai...",
+        "mini & abhi",
+        "Forever in my heart..."
+      ];
+      let currentLyricIndex = 0;
+      let lyricTimer = 0;
+
       let drawnCount = 0;
       const speed = 14;
 
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Background floating lights
         for (let bg of bgParticles) {
           ctx.fillStyle = `rgba(255, 120, 160, ${bg.alpha})`;
           ctx.beginPath();
@@ -183,17 +200,15 @@
           if (bg.y < 0) bg.y = canvas.height;
         }
 
-        // Top Heading
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.font = "bold 24px Arial";
         ctx.fillStyle = "#ffffff";
         ctx.shadowColor = "#ff4d6d";
         ctx.shadowBlur = 10;
-        ctx.fillText("YOUR HEART", centerX, 70);
+        ctx.fillText("YOUR HEART", centerX, 55);
         ctx.shadowBlur = 0;
 
-        // Progressive heart draw
         if (drawnCount < heartPoints.length) {
           drawnCount += speed;
           if (drawnCount > heartPoints.length) drawnCount = heartPoints.length;
@@ -205,7 +220,6 @@
           ctx.fillText("I love you", heartPoints[k].x, heartPoints[k].y);
         }
 
-        // Bloodlines Effect
         ctx.lineWidth = 1.2;
         for (let line of bloodlines) {
           line.progress += 0.015;
@@ -231,7 +245,6 @@
           ctx.fill();
         }
 
-        // Abhishek text particles around focus
         for (let np of nameParticles) {
           np.x += np.vx;
           np.y += np.vy;
@@ -241,23 +254,35 @@
 
           ctx.font = `bold ${np.size}px Arial`;
           ctx.fillStyle = `rgba(255, 100, 150, ${np.alpha})`;
-          ctx.fillText("Abhishek", np.x, np.y);
+          ctx.fillText("abhi", np.x, np.y);
         }
 
-        // Glowing center text
         ctx.font = "bold 26px Arial";
         ctx.fillStyle = "#ffffff";
         ctx.shadowColor = "#ff0055";
         ctx.shadowBlur = 18;
-        ctx.fillText("ABHISHEK", centerX, centerY - 10);
+        ctx.fillText("abhi", centerX, centerY - 10);
         ctx.shadowBlur = 0;
 
-        // Bottom text
-        ctx.font = "bold 20px Arial";
+        // Increased timer delay so lines change slower and match better
+        lyricTimer++;
+        if (lyricTimer > 210) { 
+          currentLyricIndex = (currentLyricIndex + 1) % lyricsLines.length;
+          lyricTimer = 0;
+        }
+
+        ctx.font = "bold 18px Arial";
+        ctx.fillStyle = "#ffc0cb";
+        ctx.shadowColor = "#ff1493";
+        ctx.shadowBlur = 12;
+        ctx.fillText(lyricsLines[currentLyricIndex], centerX, 560);
+        ctx.shadowBlur = 0;
+
+        ctx.font = "bold 19px Arial";
         ctx.fillStyle = "#ff6b8b";
         ctx.shadowColor = "#ff6b8b";
         ctx.shadowBlur = 8;
-        ctx.fillText("Look at this, Pratibha!", centerX, 620);
+        ctx.fillText("Look at this, mini!", centerX, 630);
         ctx.shadowBlur = 0;
 
         requestAnimationFrame(animate);
@@ -268,3 +293,4 @@
   </script>
 </body>
 </html>
+
