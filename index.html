@@ -1,296 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Special For mini</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      background: #000;
-    }
-
-    /* Page 1: Romantic Theme Styling */
-    #front-page {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #780206 100%);
-      z-index: 10;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .front-title {
-      font-size: 38px;
-      font-weight: 800;
-      color: #ffffff;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      letter-spacing: 2px;
-      margin-bottom: 35px;
-    }
-
-    .btn-check {
-      background: rgba(255, 255, 255, 0.95);
-      color: #d62246;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 16px 32px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      letter-spacing: 1px;
-    }
-
-    .btn-check:active {
-      transform: scale(0.95);
-    }
-
-    /* Page 2: Animation View Styling */
-    #animation-page {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(circle at center, #2b0014 0%, #100008 50%, #000000 100%);
-      justify-content: center;
-      align-items: center;
-    }
-
-    canvas {
-      max-width: 100vw;
-      max-height: 100vh;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सीए का सफ़र</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            width: 80%;
+            max-width: 450px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 20;
+        }
+        h1 {
+            color: #d81b60;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .btn-yes {
+            background-color: #ff4081;
+            color: white;
+        }
+        .btn-yes:hover {
+            background-color: #e91e63;
+        }
+        .hidden {
+            display: none;
+        }
+        .heart {
+            position: absolute;
+            top: -50px;
+            color: #ff4081;
+            font-size: 20px;
+            animation: fall 4s linear infinite;
+            z-index: 10;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+        .hidden-audio {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- BACKGROUND ROMANTIC AUDIO -->
-  <audio id="romantic-audio" preload="auto">
-    <source src="https://mp3tourl.com/audio/1787275271139-13497afb-f370-4576-a736-417174b62338.mp3" type="audio/mpeg">
-  </audio>
+    <audio id="bg-music" class="hidden-audio" controls src="https://mp3tourl.com/audio/1787350226017-b8ad5989-6dd1-4c1d-b109-0c72dc6973e4.mp3" preload="auto" loop></audio>
 
-  <!-- FRONT PAGE -->
-  <div id="front-page">
-    <div class="front-title">mini</div>
-    <button class="btn-check" onclick="startExperience()">Check Your Blood Line</button>
-  </div>
+    <div class="container" id="step-1">
+        <h1>Apki mehnat... 📚</h1>
+        <p>CA ki padhai me jo aapka dedication dikhta hai, woh sachme bohot impressive hai.</p>
+        <div class="buttons">
+            <button class="btn-yes" onclick="playSoundAndNext(2)">Aage janiye ✨</button>
+        </div>
+    </div>
 
-  <!-- ANIMATION PAGE -->
-  <div id="animation-page">
-    <canvas id="mainCanvas" width="400" height="720"></canvas>
-  </div>
+    <div class="container hidden" id="step-2">
+        <h1>Ek khaas baat... 💡</h1>
+        <p>Main aksari notice karta hoon ki aapki yeh mehnat bohot inspiring hai.</p>
+        <div class="buttons">
+            <button class="btn-yes" onclick="nextStep(3)">Aur suniye 😊</button>
+        </div>
+    </div>
 
-  <script>
-    function startExperience() {
-      // 1. Play romantic sound on button click
-      const audio = document.getElementById('romantic-audio');
-      audio.volume = 0.9;
-      audio.currentTime = 5; // इंट्रो पार्ट स्किप करने के लिए
-      audio.play().catch(e => console.log("Audio play error:", e));
+    <div class="container hidden" id="step-3">
+        <h1>Mere liye... 🌟</h1>
+        <p>Aap sirf ek padhai wali dost nahi hain, aapke sapne aur aapka passion bohot special hai mere liye.</p>
+        <div class="buttons">
+            <button class="btn-yes" onclick="nextStep(4)">Agla page ➡️</button>
+        </div>
+    </div>
 
-      // 2. Transition pages and start animation
-      const frontPage = document.getElementById('front-page');
-      const animPage = document.getElementById('animation-page');
+    <div class="container hidden" id="step-4">
+        <h1>Humari dosti... 🤝</h1>
+        <p>Mai chahta hoon ki humara yeh Connection aur Gehra ho aur mai aapke har sapne me saath rahoon.</p>
+        <div class="buttons">
+            <button class="btn-yes" onclick="startHearts()">Pura ho gaya 🎉</button>
+        </div>
+    </div>
 
-      frontPage.style.opacity = '0';
-      setTimeout(() => {
-        frontPage.style.display = 'none';
-        animPage.style.display = 'flex';
-        initAnimation();
-      }, 700);
-    }
+    <div class="container hidden" id="step-5">
+        <h1>All the Best, Future CA! 🎓</h1>
+        <p>Aapka har ek sapna pura ho, aur mai humesha aapke saath hoon. 💙</p>
+    </div>
 
-    function initAnimation() {
-      const canvas = document.getElementById("mainCanvas");
-      const ctx = canvas.getContext("2d");
-
-      const centerX = canvas.width / 2;
-      const centerY = 310;
-
-      const bgParticles = [];
-      for (let b = 0; b < 45; b++) {
-        bgParticles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 0.5,
-          speedY: Math.random() * 0.6 + 0.2,
-          alpha: Math.random() * 0.7 + 0.2
-        });
-      }
-
-      const heartPoints = [];
-      for (let scale = 6; scale <= 12; scale++) {
-        for (let j = 0; j < 120; j++) {
-          let angle = (j * (Math.PI * 2)) / 120;
-          let x = 16 * Math.pow(Math.sin(angle), 3) * scale;
-          let y = (13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle)) * scale;
-          heartPoints.push({ x: centerX + x, y: centerY - y });
-        }
-      }
-
-      const bloodlines = [];
-      for (let l = 0; l < 20; l++) {
-        let randomPt = heartPoints[Math.floor(Math.random() * heartPoints.length)];
-        bloodlines.push({
-          x: centerX,
-          y: centerY - 10,
-          targetX: randomPt.x,
-          targetY: randomPt.y,
-          progress: Math.random()
-        });
-      }
-
-      const nameParticles = [];
-      for (let p = 0; p < 14; p++) {
-        nameParticles.push({
-          x: centerX + (Math.random() - 0.5) * 140,
-          y: centerY + (Math.random() - 0.5) * 70 - 10,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          size: Math.random() * 3 + 7,
-          alpha: Math.random() * 0.6 + 0.2
-        });
-      }
-
-      // Updated and well-paced lyrics lines
-      const lyricsLines = [
-        "Dil ki baatein kehne lage...",
-        "Tu hi meri dhadkan hai...",
-        "mini & abhi",
-        "Forever in my heart..."
-      ];
-      let currentLyricIndex = 0;
-      let lyricTimer = 0;
-
-      let drawnCount = 0;
-      const speed = 14;
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        for (let bg of bgParticles) {
-          ctx.fillStyle = `rgba(255, 120, 160, ${bg.alpha})`;
-          ctx.beginPath();
-          ctx.arc(bg.x, bg.y, bg.radius, 0, Math.PI * 2);
-          ctx.fill();
-          bg.y -= bg.speedY;
-          if (bg.y < 0) bg.y = canvas.height;
+    <script>
+        function playSoundAndNext(step) {
+            const music = document.getElementById('bg-music');
+            music.play().catch(e => console.log("Audio play blocked:", e));
+            nextStep(step);
         }
 
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.font = "bold 24px Arial";
-        ctx.fillStyle = "#ffffff";
-        ctx.shadowColor = "#ff4d6d";
-        ctx.shadowBlur = 10;
-        ctx.fillText("YOUR HEART", centerX, 55);
-        ctx.shadowBlur = 0;
-
-        if (drawnCount < heartPoints.length) {
-          drawnCount += speed;
-          if (drawnCount > heartPoints.length) drawnCount = heartPoints.length;
+        function nextStep(step) {
+            for (let i = 1; i <= 5; i++) {
+                const element = document.getElementById('step-' + i);
+                if (element) {
+                    element.classList.add('hidden');
+                }
+            }
+            const nextElement = document.getElementById('step-' + step);
+            if (nextElement) {
+                nextElement.classList.remove('hidden');
+            }
         }
 
-        ctx.font = "bold 6px Arial";
-        ctx.fillStyle = "#ffb6c1";
-        for (let k = 0; k < drawnCount; k++) {
-          ctx.fillText("I love you", heartPoints[k].x, heartPoints[k].y);
+        function startHearts() {
+            nextStep(5);
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '💙';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 300);
         }
-
-        ctx.lineWidth = 1.2;
-        for (let line of bloodlines) {
-          line.progress += 0.015;
-          if (line.progress > 1) {
-            line.progress = 0;
-            let newTarget = heartPoints[Math.floor(Math.random() * heartPoints.length)];
-            line.targetX = newTarget.x;
-            line.targetY = newTarget.y;
-          }
-
-          let currentX = centerX + (line.targetX - centerX) * line.progress;
-          let currentY = (centerY - 10) + (line.targetY - (centerY - 10)) * line.progress;
-
-          ctx.strokeStyle = `rgba(255, 20, 80, ${1 - line.progress})`;
-          ctx.beginPath();
-          ctx.moveTo(centerX, centerY - 10);
-          ctx.lineTo(currentX, currentY);
-          ctx.stroke();
-
-          ctx.fillStyle = "#ff0044";
-          ctx.beginPath();
-          ctx.arc(currentX, currentY, 1.5, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        for (let np of nameParticles) {
-          np.x += np.vx;
-          np.y += np.vy;
-
-          if (np.x < centerX - 80 || np.x > centerX + 80) np.vx *= -1;
-          if (np.y < centerY - 45 || np.y > centerY + 25) np.vy *= -1;
-
-          ctx.font = `bold ${np.size}px Arial`;
-          ctx.fillStyle = `rgba(255, 100, 150, ${np.alpha})`;
-          ctx.fillText("abhi", np.x, np.y);
-        }
-
-        ctx.font = "bold 26px Arial";
-        ctx.fillStyle = "#ffffff";
-        ctx.shadowColor = "#ff0055";
-        ctx.shadowBlur = 18;
-        ctx.fillText("abhi", centerX, centerY - 10);
-        ctx.shadowBlur = 0;
-
-        // Increased timer delay so lines change slower and match better
-        lyricTimer++;
-        if (lyricTimer > 210) { 
-          currentLyricIndex = (currentLyricIndex + 1) % lyricsLines.length;
-          lyricTimer = 0;
-        }
-
-        ctx.font = "bold 18px Arial";
-        ctx.fillStyle = "#ffc0cb";
-        ctx.shadowColor = "#ff1493";
-        ctx.shadowBlur = 12;
-        ctx.fillText(lyricsLines[currentLyricIndex], centerX, 560);
-        ctx.shadowBlur = 0;
-
-        ctx.font = "bold 19px Arial";
-        ctx.fillStyle = "#ff6b8b";
-        ctx.shadowColor = "#ff6b8b";
-        ctx.shadowBlur = 8;
-        ctx.fillText("Look at this, mini!", centerX, 630);
-        ctx.shadowBlur = 0;
-
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-    }
-  </script>
+    </script>
 </body>
 </html>
 
