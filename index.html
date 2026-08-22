@@ -1,15 +1,14 @@
-&<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>प्यारा सा प्रपोजल</title>
+    <title>सीए का सफ़र</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #fff0f5;
+            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,12 +18,12 @@
             position: relative;
         }
         .container {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             width: 80%;
-            max-width: 400px;
+            max-width: 450px;
             transition: all 0.5s ease;
             position: relative;
             z-index: 20;
@@ -33,7 +32,6 @@
             color: #d81b60;
             font-size: 24px;
             margin-bottom: 20px;
-            line-height: 1.4;
         }
         p {
             color: #555;
@@ -45,7 +43,6 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            position: relative;
         }
         button {
             padding: 15px 25px;
@@ -63,12 +60,6 @@
         .btn-yes:hover {
             background-color: #e91e63;
         }
-        .btn-no {
-            background-color: #fce4ec;
-            color: #c2185b;
-            position: relative;
-            transition: 0.1s ease;
-        }
         .hidden {
             display: none;
         }
@@ -76,7 +67,7 @@
             position: absolute;
             top: -50px;
             color: #ff4081;
-            font-size: 24px;
+            font-size: 20px;
             animation: fall 4s linear infinite;
             z-index: 10;
         }
@@ -86,13 +77,6 @@
                 opacity: 0;
             }
         }
-        #no-message {
-            color: #d81b60;
-            font-weight: bold;
-            margin-bottom: 10px;
-            min-height: 24px;
-            font-size: 18px;
-        }
         .hidden-audio {
             display: none;
         }
@@ -100,70 +84,46 @@
 </head>
 <body>
 
-    <audio id="bg-music" class="hidden-audio" controls src="https://mp3tourl.com/audio/1787347287969-b3630e94-0a95-4e5f-a92f-b7ba969e8343.mp3" preload="auto" loop></audio>
+    <audio id="bg-music" class="hidden-audio" controls src="https://mp3tourl.com/audio/1787350226017-b8ad5989-6dd1-4c1d-b109-0c72dc6973e4.mp3" preload="auto" loop></audio>
 
-    <div class="container" id="step-0">
-        <h1>Are you ready? ❤️</h1>
-        <p>Ek pyaara sa safar shuru करने ke liye taiyaar ho?</p>
+    <div class="container" id="step-1">
+        <h1>Apki mehnat... 📚</h1>
+        <p>CA ki padhai me jo aapka dedication dikhta hai, woh sachme bohot impressive hai.</p>
         <div class="buttons">
-            <button class="btn-yes" onclick="playSoundAndNext(1)">Haan, ready hoon ✨</button>
-        </div>
-    </div>
-
-    <div class="container hidden" id="step-1">
-        <p>Ek sawaal poochu?</p>
-        <h1>kya tumhe lagta hai kuch log kismat se milte hain?</h1>
-        <div class="buttons">
-            <button class="btn-yes" onclick="nextStep(2)">Shayad 🤭</button>
-            <button class="btn-no" onclick="nextStep(2)">Ho sakta hai</button>
+            <button class="btn-yes" onclick="playSoundAndNext(2)">Aage janiye ✨</button>
         </div>
     </div>
 
     <div class="container hidden" id="step-2">
-        <p>Dusra sawaal.</p>
-        <h1>in kuch mahino mein tumhe bhi kuch alag sa laga?</h1>
+        <h1>Ek khaas baat... 💡</h1>
+        <p>Main aksari notice karta hoon ki aapki yeh mehnat bohot inspiring hai.</p>
         <div class="buttons">
-            <button class="btn-yes" onclick="nextStep(3)">Bolo na...</button>
-            <button class="btn-no" onclick="nextStep(3)">Haan, thoda</button>
+            <button class="btn-yes" onclick="nextStep(3)">Aur suniye 😊</button>
         </div>
     </div>
 
     <div class="container hidden" id="step-3">
-        <p>Sach batao.</p>
-        <h1>kabhi phone dekh ke bewajah smile aayi hai?</h1>
+        <h1>Mere liye... 🌟</h1>
+        <p>Aap sirf ek padhai wali dost nahi hain, aapke sapne aur aapka passion bohot special hai mere liye.</p>
         <div class="buttons">
-            <button class="btn-yes" onclick="nextStep(4)">Nahi 🙈</button>
-            <button class="btn-no" onclick="nextStep(4)">Guilty 🤭</button>
+            <button class="btn-yes" onclick="nextStep(4)">Agla page ➡️</button>
         </div>
     </div>
 
     <div class="container hidden" id="step-4">
-        <p>Ek aakhri baat, phir main asli baat kahunga...</p>
-        <h1>ready ho?</h1>
+        <h1>Humari dosti... 🤝</h1>
+        <p>Mai chahta hoon ki humara yeh Connection aur Gehra ho aur mai aapke har sapne me saath rahoon.</p>
         <div class="buttons">
-            <button class="btn-yes" onclick="nextStep(5)">Bolo</button>
+            <button class="btn-yes" onclick="startHearts()">Pura ho gaya 🎉</button>
         </div>
     </div>
 
     <div class="container hidden" id="step-5">
-        <p>Tumhare liye,</p>
-        <h1>Tum wo chapter ho jiski expect nahi thi.<br><br>Aur main is story ko yahin khatam nahi karna chahta.<br><br>Toh bas ek hi sawaal hai –</h1>
-        <h1>Mere banoge? 💍</h1>
-        <div id="no-message"></div>
-        <div class="buttons">
-            <button class="btn-yes" onclick="nextStep(6)">Haan, banungi 💖</button>
-            <button class="btn-no" id="dodge-btn" onmouseover="handleNoClick()" ontouchstart="handleNoClick()" onclick="handleNoClick()">Nahi 🙄</button>
-        </div>
-    </div>
-
-    <div class="container hidden" id="step-6">
-        <h1>Pakka ho gaya 💍</h1>
-        <p>Best decision! Hamesha aise hi hasate rehne ka promise. 💖</p>
+        <h1>All the Best, Future CA! 🎓</h1>
+        <p>Aapka har ek sapna pura ho, aur mai humesha aapke saath hoon. 💙</p>
     </div>
 
     <script>
-        let noClickCount = 0;
-
         function playSoundAndNext(step) {
             const music = document.getElementById('bg-music');
             music.play().catch(e => console.log("Audio play blocked:", e));
@@ -171,7 +131,7 @@
         }
 
         function nextStep(step) {
-            for (let i = 0; i <= 6; i++) {
+            for (let i = 1; i <= 5; i++) {
                 const element = document.getElementById('step-' + i);
                 if (element) {
                     element.classList.add('hidden');
@@ -181,43 +141,14 @@
             if (nextElement) {
                 nextElement.classList.remove('hidden');
             }
-            if (step === 6) {
-                startHearts();
-            }
-        }
-
-        function handleNoClick() {
-            moveButton();
-            updateNoMessage();
-        }
-
-        function moveButton() {
-            const btn = document.getElementById('dodge-btn');
-            const x = Math.random() * 200 - 100;
-            const y = Math.random() * 150 - 75;
-            btn.style.transform = `translate(${x}px, ${y}px)`;
-        }
-
-        function updateNoMessage() {
-            noClickCount++;
-            const msgDiv = document.getElementById('no-message');
-            
-            if (noClickCount === 1) {
-                msgDiv.innerHTML = "Yeh nahi hoga! ❌";
-            } else if (noClickCount === 2) {
-                msgDiv.innerHTML = "Nahi, aap nahi kar sakte! 🚫";
-            } else if (noClickCount >= 3 && noClickCount <= 5) {
-                msgDiv.innerHTML = "Bas yaar, ab toh maan jao. 🙏";
-            } else {
-                msgDiv.innerHTML = "Please! 👉👈";
-            }
         }
 
         function startHearts() {
+            nextStep(5);
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.classList.add('heart');
-                heart.innerHTML = '❤️';
+                heart.innerHTML = '💙';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
                 document.body.appendChild(heart);
